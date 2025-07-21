@@ -10,9 +10,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TopProperties from "@/libs/components/homepage/TopProperties";
 import TopAgents from "@/libs/components/homepage/TopAgents";
+import useDeviceDetect from "@/libs/hooks/useDeviceDetect";
 
  const Home: NextPage = () => {
-  return (
+  const device = useDeviceDetect();
+
+  if(device === "mobile"){
+    return <Stack>HomePage mobile</Stack>
+  }else{
+    return (
         <Stack className={"home-page"}>
           <TrendProperties/>
           <PopularProperties/>
@@ -20,7 +26,9 @@ import TopAgents from "@/libs/components/homepage/TopAgents";
           <TopProperties/>
           <TopAgents/>
         </Stack>
-  );
+    );
+  }
+  
 }
 
 export default withLayoutMain(Home);
